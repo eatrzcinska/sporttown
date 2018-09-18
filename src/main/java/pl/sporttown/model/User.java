@@ -27,9 +27,10 @@ public class User {
     @Column
     private String nick;
 
-    @OneToMany
-    private Set<Pos> posts = new HashSet<>();
-
+    @OneToMany (mappedBy = "user")
+    private Set<Post> posts = new HashSet<>();
+    @OneToMany (mappedBy = "comment_user")
+    private Set<Comment> comments = new HashSet<>();
 
 
 
