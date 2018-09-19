@@ -27,7 +27,7 @@ public class User {
 
     @OneToMany (mappedBy = "user")
     private Set<Post> posts = new HashSet<>();
-    @OneToMany (mappedBy = "comment_user")
+    @OneToMany (mappedBy = "user")
     private Set<Comment> comments = new HashSet<>();
 
 
