@@ -1,12 +1,171 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.w3.org/1999/xhtml">
+<!-- Bootstrap core CSS -->
+<link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link th:href="@{css/blog-home.css}" rel="stylesheet">
 
 <head th:replace="fragments::links"></head>
 
 <body>
-<div class="page">
+<div class="page" style="background-color: #f4faff">
     <header th:replace="fragments::header"></header>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+                <br><br>
+                <h3 class="my-4"> Tu będzie pole dodaj post
+                </h3>
+                <br><br>
+
+
+                <!-- Add New Post -->
+                <div class="card mb-4">
+
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: dodgerblue">Użytkownik:</h5>
+                        <p class="card-text">Przygotowania do 56 Biegu Westerplatte idą pełną parą! Dziś czas na 10 km
+                            38 minut!</p>
+                        <br>
+                        <h5 class="card-text" style="color: dodgerblue">Kategoria:</h5>
+                        <h5 class="card-text" style="color: dodgerblue">Liczba głosów:</h5>
+                        <a href="#" class="btn btn-primary">Czytaj &rarr;</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on January 1, 2017 by
+                        <a href="#">Start Bootstrap</a>
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- Blog Post -->
+                <div class="card mb-4">
+                    <img class="card-img-top" th:src="@{../img/bieganie.jpg}" alt="Zdjęcie biegaczki">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: dodgerblue">Użytkownik:</h5>
+                        <p class="card-text">Przygotowania do 56 Biegu Westerplatte idą pełną parą! Dziś czas na 10 km
+                            38 minut!</p>
+                        <br>
+                        <h5 class="card-text" style="color: dodgerblue">Kategoria:</h5>
+                        <h5 class="card-text" style="color: dodgerblue">Liczba głosów:</h5>
+                        <a href="#" class="btn btn-primary">Czytaj &rarr;</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on January 1, 2017 by
+                        <a href="#">Start Bootstrap</a>
+                    </div>
+                </div>
+
+                <!-- Blog Post -->
+                <div class="card mb-4">
+                    <img class="card-img-top" th:src="@{../img/wspin1.jpeg}" alt="Zdjęcie wspinacza">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: dodgerblue">Użytkownik:</h5>
+                        <p class="card-text">Park Narodowy Yosemitte w Kaliforni. Snake Dike (5.7) na Half Dome
+                            zdobyty!</p>
+                        <br>
+                        <h5 class="card-text"style="color: dodgerblue">Kategoria:</h5>
+                        <h5 class="card-text"style="color: dodgerblue">Liczba głosów:</h5>
+
+                        <a href="#" class="btn btn-primary">Read More &rarr;</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on January 1, 2017 by
+                        <a href="#">Start Bootstrap</a>
+                    </div>
+                </div>
+
+
+                <!-- Pagination -->
+                <ul class="pagination justify-content-center mb-4">
+                    <li class="page-item">
+                        <a class="page-link" href="#">&larr; Older</a>
+                    </li>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Newer &rarr;</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Search Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Szukaj</h5>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Wyszukaj...">
+                            <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Go!</button>
+                </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categories Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Najpopularniejsze kategorie</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#">Rower</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Ping-pong</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Wspinaczka</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#">Rolki</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Bieganie</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Boks</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">RANKING NAJLEPSZYCH POSTÓW</h5>
+                    <div class="card-body">
+                        Dziś na podium ...
+                        <br><br><br><br><br>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
 
     <footer th:replace="fragments::footer"></footer>
 
