@@ -1,8 +1,7 @@
 package pl.sporttown.service;
-
 import org.springframework.stereotype.Service;
-import pl.sporttown.model.Post;
-import pl.sporttown.repoository.PostRepository;
+import pl.sporttown.domain.model.Post;
+import pl.sporttown.domain.repoository.PostRepository;
 
 import java.util.Date;
 import java.util.List;

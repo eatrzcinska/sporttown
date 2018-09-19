@@ -3,7 +3,7 @@ package pl.sporttown.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.sporttown.model.Post;
+import pl.sporttown.domain.model.Post;
 import pl.sporttown.service.PostService;
 
 import java.util.Date;
@@ -28,21 +28,21 @@ public class PostController {
     }
 
     @PostMapping(path = "/add")
-    public String createPost(Post post){
+    public String createPost(Post post) {
         service.create(post);
         return "redirect:/post/list";
     }
 
     @GetMapping(path = "/list")
-    public String postList(Model model){
-        List <Post> postList = service.findAll();
+    public String postList(Model model) {
+        List<Post> postList = service.findAll();
         model.addAttribute("postList", postList);
         return "postList";
     }
 
     //Do zmiany
     @GetMapping(path = "/find/{data}")
-    public String findPostByDate(@PathVariable(name = "data")Date data, Model model){
+    public String findPostByDate(@PathVariable(name = "data") Date data, Model model) {
         Optional<Post> postsByData = service.findByDate(data);
 
         if (postsByData.isPresent()) {
@@ -54,18 +54,18 @@ public class PostController {
 
     //Do zmiany
     @GetMapping(path = "/find/{id}")
-    public String findPostById(@PathVariable(name = "id") Long id, Model model){
-            Optional<Post> postsById = service.findById(id);
+    public String findPostById(@PathVariable(name = "id") Long id, Model model) {
+        Optional<Post> postsById = service.findById(id);
 
-            if (postsById.isPresent()) {
-                model.addAttribute("post", postsById.get());
-                return "postDetails";
-            }
-            return "redirect:/error";
+        if (postsById.isPresent()) {
+            model.addAttribute("post", postsById.get());
+            return "postDetails";
         }
+        return "redirect:/error";
+    }
 
     @DeleteMapping(path = "/remove/{id}")
-    public String removePost(@PathVariable(name = "id")Long id){
+    public String removePost(@PathVariable(name = "id") Long id) {
         service.removePost(id);
         return "redirect:/post/list";
     }

@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head><title>Home Page</title></head>
+<body>
+
+<div th:replace="fragments :: header"></div>
+
+<h1>Hello !</h1>
+<p>Welcome to <span th:text="${post}">Our App</span></p>
+
+<label th:text="'Hello' + ${post}"></label>
+
+<div class="container marketing">
+    <div class="row">
+        <form th:action="@{/post/add}" th:object="${post}" method="post">
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="text">Dodaj treść posta</label>
+                    </div>
+                    <div class="col-md-5">
+                        <input class="form-control" id="text" type="text" th:field="*{text}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-3 col-md-5">
+                    <input class="form-control" type="submit" th:value="Submit">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+
