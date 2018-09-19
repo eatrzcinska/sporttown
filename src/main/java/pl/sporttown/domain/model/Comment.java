@@ -22,11 +22,11 @@ public class Comment{
 
     @ManyToOne
     @JoinColumn (name="user_id")
-    private Comment comment_user;
+    private User user;
 
     @ManyToOne
     @JoinColumn (name="post_id")
-    private Comment comment_post;
+    private Post post;
 
 
 }

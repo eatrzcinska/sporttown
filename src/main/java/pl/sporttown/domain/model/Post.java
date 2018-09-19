@@ -23,7 +23,7 @@ public class Post {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime data;
 
-    @OneToMany (mappedBy = "comment_post")
+    @OneToMany (mappedBy = "post")
     private Set<Comment> comments = new HashSet<>();
 
     @ManyToOne
