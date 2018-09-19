@@ -1,9 +1,9 @@
 package pl.sporttown.controller;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 import pl.sporttown.service.UserService;
 
-@Service
+@Controller
 public class UserController {
 
     private UserService service;

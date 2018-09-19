@@ -1,8 +1,7 @@
 package pl.sporttown.service;
 
-
 import org.springframework.stereotype.Service;
-import pl.sporttown.repoository.PostRepository;
+import pl.sporttown.domain.repoository.PostRepository;
 
 @Service
 public class PostService {
