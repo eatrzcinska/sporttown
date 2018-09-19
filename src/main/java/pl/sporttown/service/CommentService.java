@@ -1,6 +1,6 @@
 package pl.sporttown.service;
 import org.springframework.stereotype.Service;
-import pl.sporttown.repoository.CommentRepository;
+import pl.sporttown.domain.repoository.CommentRepository;
 
 @Service
 public class CommentService {

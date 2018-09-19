@@ -1,10 +1,10 @@
-package pl.sporttown.model;
+package pl.sporttown.domain.model;
 
 import lombok.Data;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -13,12 +13,12 @@ public class Comment{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long ID;
+    private long ID;
     @Column
     private String text;
     @Column
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private Date data;
+    private LocalDateTime data;
 
     @ManyToOne
     @JoinColumn (name="user_id")

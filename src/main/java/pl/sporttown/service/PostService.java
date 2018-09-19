@@ -1,6 +1,5 @@
 package pl.sporttown.service;
 
-
 import org.springframework.stereotype.Service;
 import pl.sporttown.model.Post;
 import pl.sporttown.repoository.PostRepository;
