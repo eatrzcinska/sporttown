@@ -16,25 +16,12 @@ public class PostService {
         this.repository = repository;
     }
 
-    public void create(Post post){
+    public void addPost(Post post){
         repository.save(post);
     }
 
     public List<Post> findAll(){
         return repository.findAll();
     }
-
-    public Optional<Post> findByDate(Date data) {
-        return repository.findAllByData(data);
-    }
-
-    public Optional<Post> findById(Long id) {
-        return repository.findById(id);
-    }
-
-    public void removePost(Long id){
-        repository.deleteById(id);
-    }
-
 
 }

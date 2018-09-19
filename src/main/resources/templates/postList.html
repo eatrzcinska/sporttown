@@ -14,20 +14,30 @@
             <tr>
                 <div class="row table-header"> <!--Nagłówek-->
                     <td>
-                        <div class="col-md-2">Id</div>
+                        <div class="col-md-2">Tresc posta</div>
                     </td>
                     <td>
-                        <div class="col-md-2">Name</div>
+                        <div class="col-md-2">Image</div>
                     </td>
                     <td>
-                        <div class="col-md-2">NIP</div>
-                    </td>
-                    <td>
-                        <div class="col-md-2">Address</div>
+                        <div class="col-md-2">Uzytkownik</div>
                     </td>
 
                 </div>  <!--Nagłowek end-->
             </tr>
+            <div class="row table-row" th:each="post : ${postList}"> <!--Nagłówek-->
+            <tr>
+                  <td>
+                      <div class="col-md-2"><p th:text="${post.getText()}"></p></div>
+                  </td>
+                  <td>
+                        <div class="col-md-2"><p>zdjęcie</p></div>
+                    </td>
+                  <td>
+                      <div class="col-md-2"><p>imie i nazwisko</p></div>
+                  </td>
+            </tr>
+    </div>
         </table>
     </div>
     <!--Treść strony-->
