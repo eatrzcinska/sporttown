@@ -16,12 +16,6 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
-    private UserService service;
-
-    public UserController(UserService service) {
-        this.service = service;
-    }
-
     @Autowired
     private UserService userService;
 
@@ -31,7 +25,7 @@ public class UserController {
     }
 
     @GetMapping("/registration")
-    public String showRegistrationForm(Model model) {
+    public String showRegistrationForm() {
         return "registration";
     }
 

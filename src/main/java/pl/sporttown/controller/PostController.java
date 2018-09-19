@@ -1,6 +1,7 @@
 package pl.sporttown.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import pl.sporttown.service.PostService;
 
 
