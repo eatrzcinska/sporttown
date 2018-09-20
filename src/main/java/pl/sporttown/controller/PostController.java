@@ -22,7 +22,8 @@ public class PostController {
     }
 
     @GetMapping("/")
-    public String root(@ModelAttribute("postDTO") PostDTO postDTO) {
+    public String root(@ModelAttribute("postDTO") PostDTO postDTO, Model model) {
+        model.addAttribute("postList", postService.findAll());
         return "index";
     }
 

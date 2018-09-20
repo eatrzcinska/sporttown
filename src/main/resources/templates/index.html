@@ -27,7 +27,7 @@
                 <h4>Najnowsze na stronie</h4>
 
                 <!-- Existing Posts -->
-
+                <div th:replace = "postTemplate :: postTemplate"></div>
 
                 <!-- First Post -->
                 <div class="card mb-4">
@@ -58,7 +58,7 @@
                         <h5 class="card-text"style="color: dodgerblue">Kategoria:</h5>
                         <h5 class="card-text"style="color: dodgerblue">Liczba głosów:</h5>
 
-                        <a href="#" class="btn btn-primary">Read More &rarr;</a>
+                        <a href="#" class="btn btn-primary">Czytaj &rarr;</a>
                     </div>
                     <div class="card-footer text-muted">
                         Posted on January 1, 2017 by
@@ -70,10 +70,10 @@
                 <!-- Pagination -->
                 <ul class="pagination justify-content-center mb-4">
                     <li class="page-item">
-                        <a class="page-link" href="#">&larr; Older</a>
+                        <a class="page-link" href="#">&larr; Poprzednie</a>
                     </li>
                     <li class="page-item disabled">
-                        <a class="page-link" href="#">Newer &rarr;</a>
+                        <a class="page-link" href="#">Następne &rarr;</a>
                     </li>
                 </ul>
 
