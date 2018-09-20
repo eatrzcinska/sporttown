@@ -14,5 +14,6 @@ public class PostDTO {
     private String text;
     private int votes;
     private LocalDateTime data;
+    private byte[] image;
 
 }
