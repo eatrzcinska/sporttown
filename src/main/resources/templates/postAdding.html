@@ -6,7 +6,7 @@
     <title>Post Adding</title>
 </head>
 <body>
-<div th:fragment="postAdding">
+<div th:fragment="postAdding" sec:authorize="!isAnonymous()">
     <div class="card mb-4">
         <div class="card-body">
             <form role="form">
