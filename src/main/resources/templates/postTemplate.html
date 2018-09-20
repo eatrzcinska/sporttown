@@ -12,16 +12,15 @@
     <div class="card mb-4">
         <img class="card-img-top" th:src="@{http://placehold.it/750x300}" alt="Image">
         <div class="card-body">
-            <h5 class="card-title" style="color: dodgerblue">Użytkownik:</h5>
-            <p class="card-text" th:text="${post.getText()}">Text</p>
+            <h5 class="card-title" style="color: dodgerblue" th:text="${'Użytkownik: ' + post.getUser()}"></h5>
+            <p class="card-text" th:text="${post.getText()}"></p>
             <br>
-            <h5 class="card-text" style="color: dodgerblue">Kategoria:</h5>
-            <h5 class="card-text" style="color: dodgerblue">Liczba głosów:</h5>
+            <h5 class="card-text" style="color: dodgerblue" >Kategoria:</h5>
+            <h5 class="card-text" style="color: dodgerblue" th:text="${'Liczba głosów: ' + post.getVotes()}"></h5>
             <a href="#" class="btn btn-primary">Czytaj &rarr;</a>
         </div>
-        <div class="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
+        <div class="card-footer text-muted" th:text="${'Dodano: ' + post.getData()}">
+            <a href="#"></a>
         </div>
     </div>
 </div>

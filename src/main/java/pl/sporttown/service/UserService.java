@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.sporttown.controller.modelDTO.UserDTO;
 import pl.sporttown.controller.modelDTO.UserRegistrationDto;
 import pl.sporttown.domain.model.Role;
 import pl.sporttown.domain.model.User;
@@ -25,6 +26,8 @@ public class UserService implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    private MappingService mappingService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -47,8 +50,10 @@ public class UserService implements UserDetailsService {
         return repository.findByEmail(email);
     }
 
-    public User findByNick(String nick){
-        return repository.findByNick(nick);
+    public UserDTO findByNick(String nick){
+        User user = repository.findByNick(nick);
+        UserDTO userDTO = mappingService.mappingUserToUserDTO(user);
+        return userDTO;
     }
 
     public User save(UserRegistrationDto userDto){
