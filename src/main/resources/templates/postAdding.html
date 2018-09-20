@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Adding</title>
+</head>
+<body>
+<div th:fragment="postAdding">
+    <div class="card mb-4">
+        <div class="card-body">
+            <form role="form">
+                <div class="form-group">
+                    <label for="text">Utwórz post...</label>
+                    <textarea class="form-control" id="text" placeholder="Podziel się z nami swoim osiągnięciem!">
+                            </textarea></div>
+                <div class="form-group" >
+                    <label for="category">Kategoria</label>
+                    <select class="form-control form-control-lg" id="category">
+
+                        <option selected>Wybierz</option>
+                        <option>Rower</option>
+                        <option>Rolki</option>
+                        <option>Bieganie</option>
+                        <option>Wędkarstwo</option>
+                        <option>Wspinaczka</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputFile">Dodaj zdjęcie...</label>
+                    <input type="file" id="exampleInputFile">
+
+                </div>
+                <!--<div class="checkbox">-->
+                <!--<label>-->
+                <!--<input type="checkbox"> Zaznacz mnie!-->
+                <!--</label>-->
+                <!--</div>-->
+                <button type="submit" class="btn btn-default">Wyślij!</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

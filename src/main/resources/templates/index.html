@@ -7,48 +7,30 @@
 <!-- Custom styles for this template -->
 <link th:href="@{css/blog-home.css}" rel="stylesheet">
 
+<!-- Links -->
 <head th:replace="fragments::links"></head>
 
 <body>
 <div class="page" style="background-color: #f4faff">
+
+    <!-- Header -->
     <header th:replace="fragments::header"></header>
 
     <!-- Page Content -->
     <div class="container">
-
         <div class="row">
 
             <!-- Blog Entries Column -->
             <div class="col-md-8">
-                <br><br>
-                <h3 class="my-4"> Tu będzie pole dodaj post
-                </h3>
-                <br><br>
-
+                <br>
 
                 <!-- Add New Post -->
-                <div class="card mb-4">
+                <div th:replace = "postAdding :: postAdding"></div>
 
-                    <div class="card-body">
-                        <h5 class="card-title" style="color: dodgerblue">Użytkownik:</h5>
-                        <p class="card-text">Przygotowania do 56 Biegu Westerplatte idą pełną parą! Dziś czas na 10 km
-                            38 minut!</p>
-                        <br>
-                        <h5 class="card-text" style="color: dodgerblue">Kategoria:</h5>
-                        <h5 class="card-text" style="color: dodgerblue">Liczba głosów:</h5>
-                        <a href="#" class="btn btn-primary">Czytaj &rarr;</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        Posted on January 1, 2017 by
-                        <a href="#">Start Bootstrap</a>
-                    </div>
-                </div>
+                <!-- Existing Posts -->
+                <h4>Najnowsze na stronie</h4>
 
-
-
-
-
-                <!-- Blog Post -->
+                <!-- First Post -->
                 <div class="card mb-4">
                     <img class="card-img-top" th:src="@{../img/bieganie.jpg}" alt="Zdjęcie biegaczki">
                     <div class="card-body">
@@ -66,7 +48,7 @@
                     </div>
                 </div>
 
-                <!-- Blog Post -->
+                <!-- Second Post -->
                 <div class="card mb-4">
                     <img class="card-img-top" th:src="@{../img/wspin1.jpeg}" alt="Zdjęcie wspinacza">
                     <div class="card-body">
@@ -125,7 +107,7 @@
                                         <a href="#">Rower</a>
                                     </li>
                                     <li>
-                                        <a href="#">Ping-pong</a>
+                                        <a href="#">Wędkarstwo</a>
                                     </li>
                                     <li>
                                         <a href="#">Wspinaczka</a>
@@ -167,6 +149,8 @@
     </div>
     <!-- /.container -->
 
+
+    <!-- Footer -->
     <footer th:replace="fragments::footer"></footer>
 
 </div>
