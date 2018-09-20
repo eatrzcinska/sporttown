@@ -3,9 +3,7 @@
 <head th:replace="fragments :: links">
 </head>
 <body>
-
 <div th:replace="fragments :: header"></div>
-
 <div class="container marketing">
     <!--Treść strony-->
     <h3>Lista postów: </h3>
@@ -22,22 +20,39 @@
                     <td>
                         <div class="col-md-2">Uzytkownik</div>
                     </td>
-
                 </div>  <!--Nagłowek end-->
             </tr>
             <div class="row table-row" th:each="post : ${postList}"> <!--Nagłówek-->
-            <tr>
-                  <td>
-                      <div class="col-md-2"><p th:text="${post.getText()}"></p></div>
-                  </td>
-                  <td>
+                <tr>
+                    <td>
+                        <div class="col-md-2"><p th:text="${post.getText()}"></p></div>
+                    </td>
+                    <td>
+                        <!--<img th:src="@{/image/${image_id}}" />-->
+
+                        <img th:src="@{/post/image-response-entity}" />
+                    </td>
+                    <td>
+                        <th:foreach th:each="... " var="imgPath" items="${imagesList}">
+                            <img src="/images/${imgPath}" alt="">
+                        </th:foreach >
+                    </td>
+                    <td>
+                        <!--<img th:src="@{/image/${image_id}}" />-->
+                        <!--<img th:src="@{/post/image-response-entity}" />-->
+                    </td>
+                    <td>
+                        <!--<images src="@{src/main/resources/static/images/1.png}" alt="error occured"/>-->
+                        <!--<img th:src="@{/images/1.png}" alt="error occured"/>-->
+                    </td>
+                    <td>
                         <div class="col-md-2"><p>zdjęcie</p></div>
                     </td>
-                  <td>
-                      <div class="col-md-2"><p>imie i nazwisko</p></div>
-                  </td>
-            </tr>
-    </div>
+                    <td>
+                        <div class="col-md-2"><p>imie i nazwisko</p></div>
+                    </td>
+                </tr>
+            </div>
         </table>
     </div>
     <!--Treść strony-->

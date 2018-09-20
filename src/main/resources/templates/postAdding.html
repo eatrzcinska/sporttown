@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+      xmlns:sec="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Post Adding</title>
@@ -9,11 +9,12 @@
 <div th:fragment="postAdding" sec:authorize="!isAnonymous()">
     <div class="card mb-4">
         <div class="card-body">
-            <form role="form">
+
+            <form  th:action="@{/post/add}" method="post"  th:object="${postDTO}" >
                 <div class="form-group">
                     <label for="text">Utwórz post...</label>
-                    <textarea class="form-control" id="text" placeholder="Podziel się z nami swoim osiągnięciem!">
-                            </textarea></div>
+                    <textarea  textarea class="form-control" id="text" th:field="*{text}" placeholder="Podziel się z nami swoim osiągnięciem!"/>
+                    </textarea></div>
                 <div class="form-group" >
                     <label for="category">Kategoria</label>
                     <select class="form-control form-control-lg" id="category">

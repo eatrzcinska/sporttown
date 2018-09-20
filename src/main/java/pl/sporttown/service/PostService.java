@@ -1,5 +1,6 @@
 package pl.sporttown.service;
 import org.springframework.stereotype.Service;
+import pl.sporttown.controller.modelDTO.PostDTO;
 import pl.sporttown.domain.model.Post;
 import pl.sporttown.domain.repoository.PostRepository;
 
@@ -10,18 +11,26 @@ import java.util.Optional;
 @Service
 public class PostService {
 
-    private PostRepository repository;
+    private PostRepository postRepository;
 
     public PostService(PostRepository repository) {
-        this.repository = repository;
+        this.postRepository = repository;
     }
 
-    public void addPost(Post post){
-        repository.save(post);
+    public void addPost(PostDTO postDTO){
+        Post post = new Post();
+        post.setId(postDTO.getId());
+        post.setText(postDTO.getText());
+        post.setImage(postDTO.getImage());
+        post.setData(postDTO.getData());
+        post.setVotes(postDTO.getVotes());
+
+        postRepository.save(post);
     }
 
     public List<Post> findAll(){
-        return repository.findAll();
+        return postRepository.findAll();
     }
+
 
 }
