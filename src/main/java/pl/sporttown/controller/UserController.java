@@ -31,17 +31,18 @@ public class UserController {
 
     @PostMapping("/registration")
     public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
-                                      BindingResult result){
-
+                                      BindingResult result) {
         User existing = userService.findByEmail(userDto.getEmail());
-        if (existing != null){
+        if (existing != null) {
             result.rejectValue("email", null, "There is already an account registered with that email");
+            return "redirect:/registration?failed";
         }
-
-        if (result.hasErrors()){
+        if (!userDto.getEmail().equals(userDto.getConfirmEmail()) || !userDto.getPassword().equals(userDto.getConfirmPassword())) {
+            return "redirect:/registration?wrongmatch";
+        }
+        if (result.hasErrors()) {
             return "registration";
         }
-
         userService.save(userDto);
         return "redirect:/registration?success";
     }

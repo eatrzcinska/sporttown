@@ -30,9 +30,9 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = repository.findByEmail(email);
         if (user == null){
-            throw new UsernameNotFoundException("Invalid username or password.");
+            throw new UsernameNotFoundException("Invalid nick or password.");
         }
-        return new org.springframework.security.core.userdetails.User(user.getEmail(),
+        return new org.springframework.security.core.userdetails.User(user.getNick(),
                 user.getPassword(),
                 mapRolesToAuthorities(user.getRoles()));
     }
@@ -47,10 +47,14 @@ public class UserService implements UserDetailsService {
         return repository.findByEmail(email);
     }
 
+    public User findByNick(String nick){
+        return repository.findByNick(nick);
+    }
+
     public User save(UserRegistrationDto userDto){
         User user = new User();
-        user.setName(userDto.getFirstName());
-        user.setLastName(userDto.getLastName());
+        user.setName("noname");
+        user.setLastName("noname");
         user.setNick(userDto.getNick());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
