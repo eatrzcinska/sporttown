@@ -1,30 +1,42 @@
 package pl.sporttown.controller.modelDTO;
 
 
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import pl.sporttown.validation.FieldsValueMatch;
+import javax.validation.constraints.*;
 
+@FieldsValueMatch.List({
+        @FieldsValueMatch(
+                field = "password",
+                fieldMatch = "confirmPassword"
+        ),
+        @FieldsValueMatch(
+                field = "email",
+                fieldMatch = "confirmEmail"
+        )
+})
+@EqualsAndHashCode
+@Data
 public class UserRegistrationDto {
-
-    @NotEmpty
     private String firstName;
-
-    @NotEmpty
     private String lastName;
 
     @NotEmpty
+    @Size(min = 3, max = 10)
     private String password;
 
     @NotEmpty
+    @Size(min = 3, max = 10)
     private String confirmPassword;
+
+    @NotEmpty
+    @Pattern(regexp = "^[a-zA-Z0-9]*$")
+    private String nick;
 
     @Email
     @NotEmpty
     private String email;
-
-    @NotEmpty
-    private String nick;
 
     @Email
     @NotEmpty
@@ -33,68 +45,5 @@ public class UserRegistrationDto {
     @AssertTrue
     private Boolean terms;
 
-    public String getNick() {
-        return nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getConfirmEmail() {
-        return confirmEmail;
-    }
-
-    public void setConfirmEmail(String confirmEmail) {
-        this.confirmEmail = confirmEmail;
-    }
-
-    public Boolean getTerms() {
-        return terms;
-    }
-
-    public void setTerms(Boolean terms) {
-        this.terms = terms;
-    }
 
 }

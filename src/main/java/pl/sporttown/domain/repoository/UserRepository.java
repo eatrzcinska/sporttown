@@ -8,5 +8,6 @@ import pl.sporttown.domain.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
     User findByEmail(String email);
+    User findByNick(String nick);
     User save(UserRegistrationDto registration);
 }
