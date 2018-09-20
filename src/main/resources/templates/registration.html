@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <!-- Links -->
+    <head th:replace="fragments::links"></head>
 
     <title>Registration</title>
 </head>
 <body>
 <div class="container">
+
+    <!-- Header -->
+    <header th:replace="fragments::header"></header>
+<br>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
 
@@ -123,8 +123,8 @@
     </div>
 </div>
 
-<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<!-- Footer -->
+<footer th:replace="fragments::footer"></footer>
 
 </body>
 </html>
