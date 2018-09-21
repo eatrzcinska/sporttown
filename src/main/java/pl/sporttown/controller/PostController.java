@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.sporttown.controller.modelDTO.PostDTO;
 import pl.sporttown.controller.modelDTO.UserDTO;
+import pl.sporttown.domain.model.Category;
 import pl.sporttown.domain.model.Post;
 import pl.sporttown.domain.model.User;
 import pl.sporttown.service.PostService;
@@ -31,6 +32,7 @@ public class PostController {
     @GetMapping("/")
     public String root(@ModelAttribute("postDTO") PostDTO postDTO, Model model) {
         model.addAttribute("postList", postService.findAll());
+        model.addAttribute("categories",Category.values());
         return "index";
     }
 

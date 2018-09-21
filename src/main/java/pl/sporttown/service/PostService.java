@@ -8,6 +8,7 @@ import pl.sporttown.domain.model.User;
 import pl.sporttown.domain.repoository.PostRepository;
 import pl.sporttown.domain.repoository.UserRepository;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -34,7 +35,13 @@ public class PostService {
 
         User user = userRepository.findByNick(principal.getName());
         postDTO.setData(LocalDateTime.now());
-        Post post = mappingService.mappingPostDTOToPost(postDTO);
+
+        Post post = null;
+        try {
+            post = mappingService.mappingPostDTOToPost(postDTO);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         post.setUser(user);
         postRepository.save(post);
     }
