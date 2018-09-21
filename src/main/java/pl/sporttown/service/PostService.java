@@ -57,5 +57,16 @@ public class PostService {
                 .sorted(Comparator.comparing(PostDTO::getData).reversed())
                 .collect(Collectors.toList());
     }
+
+    public PostDTO findPostById(Long id) {
+        Optional<Post> post = postRepository.findById(id);
+        if (post.isPresent()) {
+            Post nowy = post.get();
+            return mappingService.mappingPostToPostDTO(nowy);
+        } else {
+            return null;
+        }
+    }
 }
+
 

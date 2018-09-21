@@ -17,7 +17,7 @@
             <br>
             <h5 class="card-text" style="color: dodgerblue" th:text="${'Kategoria: ' + post.getCategory().getName().toLowerCase()}" ></h5>
             <h5 class="card-text" style="color: dodgerblue" th:text="${'Liczba głosów: ' + post.getVotes()}"></h5>
-            <a href="#" class="btn btn-primary">Czytaj &rarr;</a>
+            <a th:href="${'/post/show/' + post.getId()}" class="btn btn-primary">Czytaj &rarr;</a>
         </div>
         <div class="card-footer text-muted" th:text="${'Dodano: ' + post.getData()}">
             <a href="#"></a>
