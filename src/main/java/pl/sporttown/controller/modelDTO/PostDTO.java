@@ -3,8 +3,10 @@ package pl.sporttown.controller.modelDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.sporttown.domain.model.Category;
 import pl.sporttown.domain.model.User;
 
+import javax.persistence.Column;
 import java.time.LocalDateTime;
 
 @Data
@@ -18,5 +20,5 @@ public class PostDTO {
     private LocalDateTime data;
     private byte[] image;
     private UserDTO userDTO;
-
+    private Category category;
 }

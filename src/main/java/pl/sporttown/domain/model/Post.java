@@ -35,4 +35,6 @@ public class Post {
     private User user;
     @Column
     private byte[] image;
+    @Column
+    private Category category;
 }

@@ -45,7 +45,6 @@ public class PostController {
     public String addPost(@ModelAttribute("postDTO") PostDTO postDTO, Principal principal) {
         postService.addPost(postDTO, principal);
         return "redirect:/";
-
     }
 
 
@@ -54,6 +53,8 @@ public class PostController {
         model.addAttribute("postList", postService.findAll());
         return "postList";
     }
+
+
 
 }
 

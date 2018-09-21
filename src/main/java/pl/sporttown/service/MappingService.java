@@ -19,6 +19,7 @@ public class MappingService {
         postDTO.setData(post.getData());
         postDTO.setText(post.getText());
         postDTO.setImage(post.getImage());
+        postDTO.setCategory(post.getCategory());
         return postDTO;
     }
 
@@ -29,6 +30,7 @@ public class MappingService {
         post.setData(postDTO.getData());
         post.setText(postDTO.getText());
         post.setImage(postDTO.getImage());
+        post.setCategory(postDTO.getCategory());
         return post;
     }
 
