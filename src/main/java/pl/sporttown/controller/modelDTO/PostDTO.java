@@ -3,6 +3,8 @@ package pl.sporttown.controller.modelDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.sporttown.domain.model.User;
+
 import java.time.LocalDateTime;
 
 @Data
@@ -15,5 +17,6 @@ public class PostDTO {
     private int votes;
     private LocalDateTime data;
     private byte[] image;
+    private UserDTO userDTO;
 
 }

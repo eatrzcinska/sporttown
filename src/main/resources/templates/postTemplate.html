@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Template</title>
+</head>
+<body>
+
+<div th:fragment="postTemplate">
+    <div th:each="post : ${postList}">
+    <div class="card mb-4">
+        <img class="card-img-top" th:src="@{http://placehold.it/750x300}" alt="Image">
+        <div class="card-body">
+            <h5 class="card-title" style="color: dodgerblue" th:text="${'Użytkownik: ' + post.getUserDTO().getNick()}"></h5>
+            <p class="card-text" th:text="${post.getText()}"></p>
+            <br>
+            <h5 class="card-text" style="color: dodgerblue" >Kategoria:</h5>
+            <h5 class="card-text" style="color: dodgerblue" th:text="${'Liczba głosów: ' + post.getVotes()}"></h5>
+            <a href="#" class="btn btn-primary">Czytaj &rarr;</a>
+        </div>
+        <div class="card-footer text-muted" th:text="${'Dodano: ' + post.getData()}">
+            <a href="#"></a>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>
