@@ -33,7 +33,9 @@ public class Post {
     @ManyToOne
     @JoinColumn (name="user_id")
     private User user;
-    @Column
+
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
     private byte[] image;
     @Column
     private Category category;
