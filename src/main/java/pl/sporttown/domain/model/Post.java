@@ -1,8 +1,6 @@
 package pl.sporttown.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,6 +13,8 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(exclude = {"comments", "user"})
+@ToString(exclude = {"comments", "user"})
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

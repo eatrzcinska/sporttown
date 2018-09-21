@@ -14,7 +14,7 @@ public class MappingService {
     public PostDTO mappingPostToPostDTO(Post post) {
         PostDTO postDTO = new PostDTO();
         postDTO.setId(post.getId());
-        postDTO.setUser(post.getUser());
+        postDTO.setUserDTO(mappingUserToUserDTO(post.getUser()));
         postDTO.setVotes(post.getVotes());
         postDTO.setData(post.getData());
         postDTO.setText(post.getText());
@@ -25,7 +25,6 @@ public class MappingService {
     public Post mappingPostDTOToPost(PostDTO postDTO) {
         Post post = new Post();
         post.setId(postDTO.getId());
-        post.setUser(postDTO.getUser());
         post.setVotes(postDTO.getVotes());
         post.setData(postDTO.getData());
         post.setText(postDTO.getText());

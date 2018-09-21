@@ -6,6 +6,7 @@ import pl.sporttown.controller.modelDTO.UserDTO;
 import pl.sporttown.domain.model.Post;
 import pl.sporttown.domain.model.User;
 import pl.sporttown.domain.repoository.PostRepository;
+import pl.sporttown.domain.repoository.UserRepository;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
@@ -20,20 +21,21 @@ public class PostService {
     private PostRepository postRepository;
     private UserService userService;
     private MappingService mappingService;
+    private UserRepository userRepository;
 
-    public PostService(PostRepository postRepository, UserService userService, MappingService mappingService) {
+    public PostService(PostRepository postRepository, UserService userService, MappingService mappingService, UserRepository userRepository) {
         this.postRepository = postRepository;
         this.userService = userService;
         this.mappingService = mappingService;
+        this.userRepository = userRepository;
     }
 
     public void addPost(PostDTO postDTO, Principal principal) {
 
-//        UserDTO userDTO = userService.findByNick(principal.getName());
-//        User user = mappingService.mappingUserDTOToUser(userDTO);
-//        postDTO.setUser(user);
+        User user = userRepository.findByNick(principal.getName());
         postDTO.setData(LocalDateTime.now());
         Post post = mappingService.mappingPostDTOToPost(postDTO);
+        post.setUser(user);
         postRepository.save(post);
     }
 

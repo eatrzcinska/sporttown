@@ -17,6 +17,6 @@ public class PostDTO {
     private int votes;
     private LocalDateTime data;
     private byte[] image;
-    private User user;
+    private UserDTO userDTO;
 
 }

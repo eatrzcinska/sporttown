@@ -12,7 +12,7 @@
     <div class="card mb-4">
         <img class="card-img-top" th:src="@{http://placehold.it/750x300}" alt="Image">
         <div class="card-body">
-            <h5 class="card-title" style="color: dodgerblue" th:text="${'Użytkownik: ' + post.getUser()}"></h5>
+            <h5 class="card-title" style="color: dodgerblue" th:text="${'Użytkownik: ' + post.getUserDTO().getNick()}"></h5>
             <p class="card-text" th:text="${post.getText()}"></p>
             <br>
             <h5 class="card-text" style="color: dodgerblue" >Kategoria:</h5>
