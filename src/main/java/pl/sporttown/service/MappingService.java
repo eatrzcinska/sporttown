@@ -1,11 +1,15 @@
 package pl.sporttown.service;
 
+import org.apache.tomcat.util.http.fileupload.FileItemStream;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import pl.sporttown.controller.modelDTO.PostDTO;
 import pl.sporttown.controller.modelDTO.UserDTO;
 import pl.sporttown.domain.model.Post;
 import pl.sporttown.domain.model.User;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,17 +22,19 @@ public class MappingService {
         postDTO.setVotes(post.getVotes());
         postDTO.setData(post.getData());
         postDTO.setText(post.getText());
-        postDTO.setImage(post.getImage());
+        postDTO.setImageBase64Encoded(Base64.getEncoder().encodeToString(post.getImage()));
+        postDTO.setCategory(post.getCategory());
         return postDTO;
     }
 
-    public Post mappingPostDTOToPost(PostDTO postDTO) {
+    public Post mappingPostDTOToPost(PostDTO postDTO) throws IOException {
         Post post = new Post();
         post.setId(postDTO.getId());
         post.setVotes(postDTO.getVotes());
         post.setData(postDTO.getData());
         post.setText(postDTO.getText());
-        post.setImage(postDTO.getImage());
+        post.setImage(postDTO.getImage().getBytes());
+        post.setCategory(postDTO.getCategory());
         return post;
     }
 
@@ -52,6 +58,4 @@ public class MappingService {
         user.setEmail(userDTO.getEmail());
         return user;
     }
-
-
 }

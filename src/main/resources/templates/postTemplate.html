@@ -10,12 +10,12 @@
 <div th:fragment="postTemplate">
     <div th:each="post : ${postList}">
     <div class="card mb-4">
-        <img class="card-img-top" th:src="@{http://placehold.it/750x300}" alt="Image">
+        <img class="card-img-top" th:src="${'data:image/png;base64,'+ post.imageBase64Encoded}" alt="Image">
         <div class="card-body">
             <h5 class="card-title" style="color: dodgerblue" th:text="${'Użytkownik: ' + post.getUserDTO().getNick()}"></h5>
             <p class="card-text" th:text="${post.getText()}"></p>
             <br>
-            <h5 class="card-text" style="color: dodgerblue" >Kategoria:</h5>
+            <h5 class="card-text" style="color: dodgerblue" th:text="${'Kategoria: ' + post.getCategory().getName().toLowerCase()}" ></h5>
             <h5 class="card-text" style="color: dodgerblue" th:text="${'Liczba głosów: ' + post.getVotes()}"></h5>
             <a th:href="${'/post/show/' + post.getId()}" class="btn btn-primary">Czytaj &rarr;</a>
         </div>
