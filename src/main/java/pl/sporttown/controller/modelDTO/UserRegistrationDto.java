@@ -19,9 +19,6 @@ import javax.validation.constraints.*;
 @EqualsAndHashCode
 @Data
 public class UserRegistrationDto {
-    private String firstName;
-    private String lastName;
-
     @NotEmpty
     @Size(min = 3, max = 10)
     private String password;

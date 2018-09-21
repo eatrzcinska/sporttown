@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.sporttown.controller.modelDTO.UserRegistrationDto;
 import pl.sporttown.domain.model.User;
 import pl.sporttown.service.UserService;
-
 import javax.validation.Valid;
 
 @Controller
@@ -20,8 +19,13 @@ public class UserController {
     private UserService userService;
 
     @ModelAttribute("user")
-    public UserRegistrationDto userRegistrationDto() {
+    public UserRegistrationDto userRegistrationDto(){
         return new UserRegistrationDto();
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 
     @GetMapping("/registration")
@@ -29,16 +33,16 @@ public class UserController {
         return "registration";
     }
 
+    @GetMapping("/profile")
+    public String showProfie(){
+        return "profile";
+    }
+
     @PostMapping("/registration")
     public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
-                                      BindingResult result) {
-        User existing = userService.findByEmail(userDto.getEmail());
-        if (existing != null) {
-            result.rejectValue("email", null, "There is already an account registered with that email");
+                                      BindingResult result)   {
+        if (userService.findByEmail(userDto.getEmail()) != null || userService.findByNick(userDto.getNick()) != null) {
             return "redirect:/registration?failed";
-        }
-        if (!userDto.getEmail().equals(userDto.getConfirmEmail()) || !userDto.getPassword().equals(userDto.getConfirmPassword())) {
-            return "redirect:/registration?wrongmatch";
         }
         if (result.hasErrors()) {
             return "registration";
