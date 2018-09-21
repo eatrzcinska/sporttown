@@ -50,19 +50,14 @@ public class UserService implements UserDetailsService {
         return repository.findByEmail(email);
     }
 
-    public UserDTO findByNick(String nick){
-        User user = repository.findByNick(nick);
-        UserDTO userDTO = mappingService.mappingUserToUserDTO(user);
-        return userDTO;
+    public User findByNick(String nick){
+        return repository.findByNick(nick);
     }
 
-    public User save(UserRegistrationDto userDto){
-        User user = new User();
-        user.setName("noname");
-        user.setLastName("noname");
-        user.setNick(userDto.getNick());
-        user.setEmail(userDto.getEmail());
-        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+    public User save(UserRegistrationDto userRegistrationDto)   {
+
+        User user = mappingService.mappingUserDTOToUser(userRegistrationDto);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
         return repository.save(user);
     }

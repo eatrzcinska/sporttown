@@ -25,11 +25,6 @@
                     User already exists!
                 </div>
             </div>
-            <div th:if="${param.wrongmatch}">
-                <div class="alert alert-warning">
-                    Wrong email or password match!
-                </div>
-            </div>
 
             <h1>Registration</h1>
             <form th:action="@{/registration}" th:object="${user}" method="post">

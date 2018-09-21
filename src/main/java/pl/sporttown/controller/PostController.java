@@ -38,13 +38,6 @@ public class PostController {
         return "index";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-
-// tutaj dodac dodawanie usera
     @PostMapping(path = "/post/add")
     public String addPost(@ModelAttribute("postDTO") PostDTO postDTO, Principal principal) {
         postService.addPost(postDTO, principal);
@@ -59,9 +52,9 @@ public class PostController {
 
     @GetMapping(path = "/post/show/{postID}")
     public String showPost(@PathVariable("postID") long id, Model model){
-       // User user = new User();
+        // User user = new User();
         PostDTO postDTObyId = postService.findPostById(id);
-//        model.addAttribute(user);
+        //model.addAttribute(user);
         model.addAttribute("postDTOById", postDTObyId);
         return "onePostView";
     }
