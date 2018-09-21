@@ -56,7 +56,5 @@ public class PostController {
         return "postList";
     }
 
-
-
 }
 
