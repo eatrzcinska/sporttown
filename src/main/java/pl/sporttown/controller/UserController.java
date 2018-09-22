@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.sporttown.controller.modelDTO.UserRegistrationDto;
 import pl.sporttown.domain.model.User;
 import pl.sporttown.service.UserService;
+
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 @Controller
@@ -49,5 +51,10 @@ public class UserController {
         }
         userService.save(userDto);
         return "redirect:/registration?success";
+    }
+
+    @PostConstruct
+    public void addUsers(){
+        userService.addUsers();
     }
 }

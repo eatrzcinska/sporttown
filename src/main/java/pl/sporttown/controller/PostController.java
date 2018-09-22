@@ -15,6 +15,7 @@ import pl.sporttown.domain.model.User;
 import pl.sporttown.service.PostService;
 import pl.sporttown.service.UserService;
 
+import javax.annotation.PostConstruct;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +59,7 @@ public class PostController {
         model.addAttribute("postDTOById", postDTObyId);
         return "onePostView";
     }
+
 
 
 }
