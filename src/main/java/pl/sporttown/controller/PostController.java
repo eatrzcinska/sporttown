@@ -50,7 +50,7 @@ public class PostController {
         return "postList";
     }
 
-    @GetMapping(path = "/post/show/{postID}")
+    @GetMapping(path = "/showpost/{postID}")
     public String showPost(@PathVariable("postID") long id, Model model){
         // User user = new User();
         PostDTO postDTObyId = postService.findPostById(id);
