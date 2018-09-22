@@ -37,6 +37,15 @@ public class UserController {
     public String showProfie(){
         return "profile";
     }
+    @GetMapping("/profile/edit")
+    public String editProfile(){
+        return "profileEdit";
+    }
+    @GetMapping("/posty")
+    public String postsProfile(){
+        return "profilePosts";
+    }
+
 
     @PostMapping("/registration")
     public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
