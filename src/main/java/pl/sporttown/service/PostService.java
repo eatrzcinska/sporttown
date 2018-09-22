@@ -3,12 +3,15 @@ package pl.sporttown.service;
 import org.springframework.stereotype.Service;
 import pl.sporttown.controller.modelDTO.PostDTO;
 import pl.sporttown.controller.modelDTO.UserDTO;
+import pl.sporttown.domain.model.Category;
 import pl.sporttown.domain.model.Post;
 import pl.sporttown.domain.model.User;
 import pl.sporttown.domain.repoository.PostRepository;
 import pl.sporttown.domain.repoository.UserRepository;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.*;

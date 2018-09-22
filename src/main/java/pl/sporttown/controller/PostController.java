@@ -15,6 +15,7 @@ import pl.sporttown.domain.model.User;
 import pl.sporttown.service.PostService;
 import pl.sporttown.service.UserService;
 
+import javax.annotation.PostConstruct;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +51,7 @@ public class PostController {
         return "postList";
     }
 
-    @GetMapping(path = "/post/show/{postID}")
+    @GetMapping(path = "/showpost/{postID}")
     public String showPost(@PathVariable("postID") long id, Model model){
         // User user = new User();
         PostDTO postDTObyId = postService.findPostById(id);
@@ -58,6 +59,7 @@ public class PostController {
         model.addAttribute("postDTOById", postDTObyId);
         return "onePostView";
     }
+
 
 
 }
