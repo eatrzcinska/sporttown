@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import pl.sporttown.controller.modelDTO.PostDTO;
 import pl.sporttown.controller.modelDTO.UserDTO;
+import pl.sporttown.controller.modelDTO.UserEditDTO;
 import pl.sporttown.controller.modelDTO.UserRegistrationDto;
 import pl.sporttown.domain.model.Post;
 import pl.sporttown.domain.model.User;
@@ -71,4 +72,6 @@ public class MappingService {
         user.setEmail(userRegistrationDto.getEmail());
         return user;
     }
+
+
 }
