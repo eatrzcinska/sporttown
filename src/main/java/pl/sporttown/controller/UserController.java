@@ -1,5 +1,6 @@
 package pl.sporttown.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,10 +8,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.sporttown.controller.modelDTO.PostDTO;
 import pl.sporttown.controller.modelDTO.UserDTO;
 import pl.sporttown.controller.modelDTO.UserEditDTO;
 import pl.sporttown.controller.modelDTO.UserRegistrationDto;
 import pl.sporttown.domain.model.User;
+import pl.sporttown.service.PostService;
 import pl.sporttown.service.UserService;
 
 import javax.annotation.PostConstruct;
@@ -22,6 +25,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private PostService postService;
 
     @ModelAttribute("user")
     public UserRegistrationDto userRegistrationDto(){
@@ -39,10 +44,12 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-
-    public String showProfie(){
+    public String showProfie(Model model, Principal principal){
+        User user = userService.findByNick(principal.getName());
+        model.addAttribute("userinfo",user);
         return "profile";
     }
+
     @ModelAttribute("userEdit")
     public UserDTO editUser(){
         return new UserDTO();
@@ -60,10 +67,11 @@ public class UserController {
     }
 
     @GetMapping("/profile/posts")
-    public String postsProfile(){
+    public String postsProfile( Model model, Principal principal){
+        model.addAttribute("userinfo", userService.findByNick(principal.getName()));
+        model.addAttribute("posts",postService.getAllPostByUser(principal.getName()));
         return "profilePosts";
     }
-
 
     @PostMapping("/registration")
     public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
