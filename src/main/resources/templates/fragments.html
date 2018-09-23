@@ -45,16 +45,38 @@
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
+                        <!--<li class="nav-item dropdown">-->
+                            <!--<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Kategorie</a>-->
+                            <!--<div class="dropdown-menu">-->
+                                <!--<a class="dropdown-item" href="#">Rolki</a>-->
+                                <!--<a class="dropdown-item" href="#">Rower</a>-->
+                                <!--<a class="dropdown-item" href="#">Bieganie</a>-->
+                                <!--<div class="dropdown-divider"></div>-->
+                                <!--<a class="dropdown-item" href="#">Wszystkie kategorie</a>-->
+                            <!--</div>-->
+                        <!--</li>-->
+
+
+
+
+                        <form th:action="@{/post//showpostByCategory}" method="get" th:field="*{selectedCategory}" >
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Kategorie</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Rolki</a>
-                                <a class="dropdown-item" href="#">Rower</a>
-                                <a class="dropdown-item" href="#">Bieganie</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Wszystkie kategorie</a>
-                            </div>
-                        </li>
+                        <select  class="form-control form-control-lg"  onchange="this.form.submit()">
+                       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Kategorie</a>
+                        <div class="dropdown-menu" >-->
+                        <option class="dropdown-item" type="submit"
+                        th:each="aCategory : ${categories}"
+                        th:value="${aCategory.getName()}"
+                        th:text="${aCategory.getName()}">
+                        </option>-->
+                        </div>-->
+                        </select>-->
+                        &lt;!&ndash;</li>&ndash;&gt;-->
+                        </form>
+
+
+
+
                     </ul>
                     <div sec:authorize="!isAnonymous()">
                         <ul class="navbar-nav ml-auto navbar-right">

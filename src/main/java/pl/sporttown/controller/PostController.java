@@ -63,7 +63,16 @@ public class PostController {
 
         return "onePostView";
     }
-
+    @GetMapping("/showpostByCategory/{category}")
+    public String showPostsByCategory( Model model, @PathVariable("category")Category category) {
+//        public String showPostsByCategory(@PathVariable("category")Category category, Model model) {
+//        if (categoryId == null) {
+//            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+//        } else {
+        List<PostDTO> categories = postService.findCategory(category);
+//            return new ResponseEntity<>(categories, HttpStatus.OK);
+        return "postByCategory";
+    }
 
 
 }
