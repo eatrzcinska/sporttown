@@ -30,8 +30,6 @@
     <!--<![endif]-->
 
 
-
-
 </head>
 <body>
 <div class="page" style="background-color: #f4faff">
@@ -46,127 +44,134 @@
             <!-- Blog Entries Column -->
             <div class="col-md-8">
                 <br>
-
-                <!-- Existing Posts -->
-
-                <!--<div th:fragment="onePostView">-->
-
                 <div class="card mb-4">
                     <img class="card-img-top" th:src="${'data:image/png;base64,'+ postDTOById.imageBase64Encoded}"
                          alt="Image">
                     <div class="card-body">
-                        <h5 class="card-title" style="color: dodgerblue"
-                            th:text="${'Użytkownik: ' + postDTOById.getUserDTO().getNick()}"></h5>
-                        <p class="card-text" th:text="${postDTOById.getText()}"></p>
+                        <div class="col-md-4">
+                            <h6 class="card-text" style="color: dodgerblue"
+                                th:text="${postDTOById.getUserDTO().getNick()}"></h6>
+                        </div>
                         <br>
-                        <h5 class="card-text" style="color: dodgerblue"
-                            th:text="${'Kategoria: ' + postDTOById.getCategory().getName().toLowerCase()}"></h5>
-                        <h5 class="card-text" style="color: dodgerblue"
-                            th:text="${'Liczba głosów: ' + postDTOById.votes}"></h5>
-
-                        <h5 class="card-text" style="color: dodgerblue"
-                            th:text="${'Dodano: ' + postDTOById.getData()}"></h5>
+                        <div>
+                            <p class="card-text" th:text="${postDTOById.getText()}"></p>
+                        </div>
+                        <!--<h5 class="card-text" style="color: dodgerblue"
+                             th:text="${'Liczba głosów: ' + postDTOById.votes}"></h5>-->
                     </div>
 
-
                     <div class="card-footer text-muted">
-                    <div class="container">
                         <div class="row">
-                            <div class="span4 well" style="padding-bottom:0">
-                                <form accept-charset="UTF-8" action="" method="POST">
-                <textarea class="span4" id="new_message" name="new_message"
-                          placeholder="Type in your message" rows="5"></textarea>
-                                    <h6 class="pull-right">320 characters remaining</h6>
-                                    <button class="btn btn-info" type="submit">Post New Message</button>
-                                </form>
+                            <div class="col-md-1"></div>
+                            <h6 th:text="${'Dodano: ' + postDTOById.getData()}"></h6>
+                            <div class="col-md-6"></div>
+                            <h6 th:text="${'Kategoria: ' + postDTOById.getCategory().getName().toLowerCase()}"></h6>
+                        </div>
+                    </div>
+
+                </div>
+                <div>
+                    <div class="form-group">
+                        <div class="span4 well">
+
+                            <form th:action="${'addcomment/' + postDTOById.getId()}" accept-charset="UTF-8" method="POST" th:object="${commentDTO}" >
+                <textarea class="form-control" id="text"
+                          placeholder="Twój komentarz (maksymalnie 320 znaków)" th:field="*{text}"></textarea>
+                                <br>
+                                <button class="btn btn-info" type="submit">Wyślij</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <h5>Wszystkie komentarze</h5>
+
+                <div class="card mb-4">
+                    <div th:replace="commentTemplate::commentTemplate"></div>
+                </div>
+
+
+                <!-- Back to main page -->
+                <div>
+                    <a class="btn btn-primary" href="/" th:href="@{/}">&larr; Powrót</a>
+                    <br>
+                </div>
+
+            </div>
+
+
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Search Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Szukaj</h5>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Wyszukaj...">
+                            <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Go!</button>
+                </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categories Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Najpopularniejsze kategorie</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#">Rower</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Wędkarstwo</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Wspinaczka</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#">Rolki</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Bieganie</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Boks</a>
+                                    </li>
+
+                                </ul>
                             </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
 
-            <!-- Back to main page -->
-            <div>
-                <a class="btn btn-primary" href="/" th:href="@{/}">&larr; Powrót</a>
-            </div>
-
-
-        </div>
-
-
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
-
-            <!-- Search Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Szukaj</h5>
-                <div class="card-body">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Wyszukaj...">
-                        <span class="input-group-btn">
-                  <button class="btn btn-secondary" type="button">Go!</button>
-                </span>
+                <!-- Side Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">RANKING NAJLEPSZYCH POSTÓW</h5>
+                    <div class="card-body">
+                        Dziś na podium ...
+                        <br><br><br><br><br>
                     </div>
                 </div>
-            </div>
 
-            <!-- Categories Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Najpopularniejsze kategorie</h5>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">Rower</a>
-                                </li>
-                                <li>
-                                    <a href="#">Wędkarstwo</a>
-                                </li>
-                                <li>
-                                    <a href="#">Wspinaczka</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">Rolki</a>
-                                </li>
-                                <li>
-                                    <a href="#">Bieganie</a>
-                                </li>
-                                <li>
-                                    <a href="#">Boks</a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Side Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">RANKING NAJLEPSZYCH POSTÓW</h5>
-                <div class="card-body">
-                    Dziś na podium ...
-                    <br><br><br><br><br>
-                </div>
             </div>
 
         </div>
+        <!-- /.row -->
 
     </div>
-    <!-- /.row -->
-
-</div>
-<!-- /.container -->
+    <!-- /.container -->
 
 
-<!-- Footer -->
-<footer th:replace="fragments::footer"></footer>
+    <!-- Footer -->
+    <footer th:replace="fragments::footer"></footer>
 
 </div>
 </body>

@@ -7,4 +7,5 @@ import pl.sporttown.domain.model.Post;
 @Repository
 public interface PostRepository extends JpaRepository<Post,Long> {
 
+    public Post findPostById(Long id);
 }

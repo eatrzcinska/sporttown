@@ -3,9 +3,11 @@ package pl.sporttown.service;
 import org.apache.tomcat.util.http.fileupload.FileItemStream;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import pl.sporttown.controller.modelDTO.CommentDTO;
 import pl.sporttown.controller.modelDTO.PostDTO;
 import pl.sporttown.controller.modelDTO.UserDTO;
 import pl.sporttown.controller.modelDTO.UserRegistrationDto;
+import pl.sporttown.domain.model.Comment;
 import pl.sporttown.domain.model.Post;
 import pl.sporttown.domain.model.User;
 
@@ -31,6 +33,7 @@ public class MappingService {
     public Post mappingPostDTOToPost(PostDTO postDTO) throws IOException {
         Post post = new Post();
         post.setId(postDTO.getId());
+        //post.setUser(mappingUserDTOToUser(postDTO.getUserDTO()));
         post.setVotes(postDTO.getVotes());
         post.setData(postDTO.getData());
         post.setText(postDTO.getText());
@@ -71,4 +74,25 @@ public class MappingService {
         user.setEmail(userRegistrationDto.getEmail());
         return user;
     }
+
+    public Comment mapingCommentDTOToComment(CommentDTO commentDTO) throws IOException {
+        Comment comment = new Comment();
+        comment.setId(commentDTO.getId());
+        comment.setData(commentDTO.getData());
+        comment.setText(commentDTO.getText());
+        //comment.setUser(mappingUserDTOToUser(commentDTO.getUserDTO()));
+        //comment.setPost(mappingPostDTOToPost(commentDTO.getPostDTO()));
+        return comment;
+    }
+
+    public CommentDTO mapingCommentToCommentDTO(Comment comment) {
+        CommentDTO commentDTO = new CommentDTO();
+        commentDTO.setId(comment.getId());
+        commentDTO.setData(comment.getData());
+        commentDTO.setText(comment.getText());
+        commentDTO.setUserDTO(mappingUserToUserDTO(comment.getUser()));
+       // commentDTO.setPostDTO(mappingPostToPostDTO(comment.getPost()));
+        return commentDTO;
+    }
+
 }

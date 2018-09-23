@@ -69,7 +69,7 @@ public class UserService implements UserDetailsService {
         user1.setName("Emila");
         user1.setLastName("Trzcińska");
         user1.setEmail("eatrzcinska@gmail.com");
-        user1.setNick("emi");
+        user1.setNick("Emila");
         user1.setPassword("$2a$10$0u0xT.PjG.nZqGem31btOO/.2qhbra82T70Pw2oi220u0lxzAy89W");
         repository.save(user1);
 
@@ -77,7 +77,7 @@ public class UserService implements UserDetailsService {
         user2.setName("Gosia");
         user2.setLastName("Bąk");
         user2.setEmail("gosia@gmail.com");
-        user2.setNick("gosia");
+        user2.setNick("Gosia");
         user2.setPassword("$2a$10$0u0xT.PjG.nZqGem31btOO/.2qhbra82T70Pw2oi220u0lxzAy89W");
         repository.save(user2);
 
@@ -85,7 +85,7 @@ public class UserService implements UserDetailsService {
         user3.setName("Paweł");
         user3.setLastName("Ościłowicz");
         user3.setEmail("paweł@gmail.com");
-        user3.setNick("paweł");
+        user3.setNick("Paweł");
         user3.setPassword("$2a$10$0u0xT.PjG.nZqGem31btOO/.2qhbra82T70Pw2oi220u0lxzAy89W");
         repository.save(user3);
     }

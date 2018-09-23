@@ -40,6 +40,7 @@ public class PostService {
         postDTO.setData(LocalDateTime.now());
 
         Post post = null;
+
         try {
             post = mappingService.mappingPostDTOToPost(postDTO);
         } catch (IOException e) {
@@ -61,14 +62,14 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
+
+
+    public Post findPostEntity(Long id) {
+        return postRepository.findPostById(id);
+    }
+
     public PostDTO findPostById(Long id) {
-        Optional<Post> post = postRepository.findById(id);
-        if (post.isPresent()) {
-            Post nowy = post.get();
-            return mappingService.mappingPostToPostDTO(nowy);
-        } else {
-            return null;
-        }
+       return mappingService.mappingPostToPostDTO(postRepository.findPostById(id));
     }
 }
 
