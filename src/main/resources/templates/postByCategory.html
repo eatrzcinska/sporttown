@@ -1,3 +1,236 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org"-->
+      <!--xmlns:sec="http://www.w3.org/1999/xhtml">-->
+
+<!--<head th:fragment="links">-->
+    <!--<meta charset="utf-8">-->
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!--&lt;!&ndash; The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags &ndash;&gt;-->
+    <!--<title>Bootstrap 101 Template</title>-->
+
+    <!--&lt;!&ndash; Bootstrap core CSS &ndash;&gt;-->
+    <!--<link th:href="@{../vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">-->
+
+    <!--&lt;!&ndash; Custom styles for this template &ndash;&gt;-->
+    <!--<link th:href="@{../css/blog-home.css}" href="../css/blog-home.css" rel="stylesheet">-->
+
+    <!--&lt;!&ndash;Latest compiled and minified CSS&ndash;&gt;-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
+          <!--integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+    <!--&lt;!&ndash;Optional theme&ndash;&gt;-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"-->
+          <!--integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
+
+    <!--&lt;!&ndash;HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries&ndash;&gt;-->
+    <!--&lt;!&ndash;WARNING: Respond.js doesn't work if you view the page via file://&ndash;&gt;-->
+    <!--&lt;!&ndash;[if lt IE 9]>&ndash;&gt;-->
+    <!--<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
+    <!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
+    <!--&lt;!&ndash;<![endif]&ndash;&gt;-->
+
+
+<!--</head>-->
+<!--<body>-->
+<!--<div class="page" style="background-color: #f4faff">-->
+
+    <!--&lt;!&ndash; Header &ndash;&gt;-->
+    <!--<header th:replace="fragments::header"></header>-->
+
+    <!--&lt;!&ndash; Page Content &ndash;&gt;-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+
+            <!--&lt;!&ndash; Blog Entries Column &ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="col-md-8">&ndash;&gt;-->
+                <!--&lt;!&ndash;<br>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="card mb-4">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<img class="card-img-top" th:src="${'data:image/png;base64,'+ postDTOById.imageBase64Encoded}"&ndash;&gt;-->
+                         <!--&lt;!&ndash;alt="Image">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="card-body">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="col-md-4">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<h6 class="card-text" style="color: dodgerblue"&ndash;&gt;-->
+                                <!--&lt;!&ndash;th:text="${postDTOById.getUserDTO().getNick()}"></h6>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<p class="card-text" th:text="${postDTOById.getText()}"></p>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;&lt;!&ndash;<h5 class="card-text" style="color: dodgerblue"&ndash;&gt;-->
+                             <!--&lt;!&ndash;th:text="${'Liczba głosów: ' + postDTOById.votes}"></h5>&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<div class="card-footer text-muted">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="col-md-1"></div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<h6 th:text="${'Dodano: ' + postDTOById.getData()}"></h6>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="col-md-6"></div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<h6 th:text="${'Kategoria: ' + postDTOById.getCategory().getName().toLowerCase()}"></h6>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="span4 well">&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<form th:action="${'addcomment/' + postDTOById.getId()}" accept-charset="UTF-8" method="POST" th:object="${commentDTO}" >&ndash;&gt;-->
+                <!--&lt;!&ndash;<textarea class="form-control" id="text"&ndash;&gt;-->
+                          <!--&lt;!&ndash;placeholder="Twój komentarz (maksymalnie 320 znaków)" th:field="*{text}"></textarea>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<br>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<button class="btn btn-info" type="submit">Wyślij</button>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</form>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<h5>Wszystkie komentarze</h5>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<div class="card mb-4">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div th:replace="commentTemplate::commentTemplate"></div>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+                <!--&lt;!&ndash;&lt;!&ndash; Back to main page &ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<a class="btn btn-primary" href="/" th:href="@{/}">&larr; Powrót</a>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<br>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+            <!--<div class="row table-row" th:each="post : ${postByCategories}"> &lt;!&ndash;Nagłówek&ndash;&gt;-->
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<div class="col-md-2"><p th:text="${post.getText()}"></p></div>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--&lt;!&ndash;<img th:src="@{/image/${image_id}}" />&ndash;&gt;-->
+
+                        <!--<img th:src="*{'data:image/png;base64,'+ imageBase64Encoded}" alt="" />-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<th:foreach th:each="... " var="imgPath" items="${imagesList}">-->
+                            <!--<img src="/images/${imgPath}" alt="">-->
+                        <!--</th:foreach >-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--&lt;!&ndash;<img th:src="@{/image/${image_id}}" />&ndash;&gt;-->
+                        <!--&lt;!&ndash;<img th:src="@{/post/image-response-entity}" />&ndash;&gt;-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--&lt;!&ndash;<images src="@{src/main/resources/static/images/1.png}" alt="error occured"/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<img th:src="@{/images/1.png}" alt="error occured"/>&ndash;&gt;-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<div class="col-md-2"><p>zdjęcie</p></div>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<div class="col-md-2"><p>imie i nazwisko</p></div>-->
+                    <!--</td>-->
+                <!--</tr>-->
+            <!--</div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!--&lt;!&ndash; Sidebar Widgets Column &ndash;&gt;-->
+            <!--<div class="col-md-4">-->
+
+                <!--&lt;!&ndash; Search Widget &ndash;&gt;-->
+                <!--<div class="card my-4">-->
+                    <!--<h5 class="card-header">Szukaj</h5>-->
+                    <!--<div class="card-body">-->
+                        <!--<div class="input-group">-->
+                            <!--<input type="text" class="form-control" placeholder="Wyszukaj...">-->
+                            <!--<span class="input-group-btn">-->
+                  <!--<button class="btn btn-secondary" type="button">Go!</button>-->
+                <!--</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--&lt;!&ndash; Categories Widget &ndash;&gt;-->
+                <!--<div class="card my-4">-->
+                    <!--<h5 class="card-header">Najpopularniejsze kategorie</h5>-->
+                    <!--<div class="card-body">-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-lg-6">-->
+                                <!--<ul class="list-unstyled mb-0">-->
+                                    <!--<li>-->
+                                        <!--<a href="#">Rower</a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a href="#">Wędkarstwo</a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a href="#">Wspinaczka</a>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div class="col-lg-6">-->
+                                <!--<ul class="list-unstyled mb-0">-->
+                                    <!--<li>-->
+                                        <!--<a href="#">Rolki</a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a href="#">Bieganie</a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a href="#">Boks</a>-->
+                                    <!--</li>-->
+
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--&lt;!&ndash; Side Widget &ndash;&gt;-->
+                <!--<div class="card my-4">-->
+                    <!--<h5 class="card-header">RANKING NAJLEPSZYCH POSTÓW</h5>-->
+                    <!--<div class="card-body">-->
+                        <!--Dziś na podium ...-->
+                        <!--<br><br><br><br><br>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            <!--</div>-->
+
+        <!--</div>-->
+        <!--&lt;!&ndash; /.row &ndash;&gt;-->
+
+    <!--</div>-->
+    <!--&lt;!&ndash; /.container &ndash;&gt;-->
+
+
+    <!--&lt;!&ndash; Footer &ndash;&gt;-->
+    <!--<footer th:replace="fragments::footer"></footer>-->
+
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.w3.org/1999/xhtml">
