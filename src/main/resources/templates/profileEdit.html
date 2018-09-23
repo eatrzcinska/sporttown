@@ -29,9 +29,6 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <!--<![endif]-->
 
-
-
-
 </head>
 <body>
 <div class="page" style="background-color: #f4faff">
@@ -68,7 +65,37 @@
                 <a class="btn btn-primary" href="/profile/edit" role="button">Edytuj Profil</a>
                 <br>
                 <br>
-                <br>
+                <h3>Informacje o uzytkowniku</h3>
+                <form  th:action="@{/profile/edit}" th:object="${userEdit}" method="post">
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('name')}? 'has-error':''">
+                        <label for="name" class="control-label">Imie</label>
+                        <input id="name"
+                               class="form-control"
+                               th:field="*{name}"/>
+                        <p class="error-message"
+                           th:each="error : ${#fields.errors('name')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
+                        <label for="lastName" class="control-label">Nazwisko</label>
+                        <input id="lastName"
+                               class="form-control"
+                               th:field="*{lastName}"/>
+                        <p class="error-message"
+                           th:each="error : ${#fields.errors('lastName')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-8">
+                            <input class="btn btn-primary" value="Save Changes" type="submit">
+                            <span></span>
+                            <input class="btn btn-default" value="Cancel" type="reset">
+                        </div>
+                    </div>
+                </form>
 
             </div><!--/tab-content-->
 

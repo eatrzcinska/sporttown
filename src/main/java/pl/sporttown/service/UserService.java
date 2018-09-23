@@ -9,12 +9,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sporttown.controller.modelDTO.UserDTO;
+import pl.sporttown.controller.modelDTO.UserEditDTO;
 import pl.sporttown.controller.modelDTO.UserRegistrationDto;
 import pl.sporttown.domain.model.Role;
 import pl.sporttown.domain.model.User;
 import pl.sporttown.domain.repoository.UserRepository;
 
 import javax.annotation.PostConstruct;
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -63,6 +65,13 @@ public class UserService implements UserDetailsService {
         return repository.save(user);
     }
 
+    public void editProfile(UserDTO userDTO, Principal principal) {
+        User user = repository.findByNick(principal.getName());
+        user.setName(userDTO.getName());
+        user.setLastName(userDTO.getLastName());
+        repository.save(user);
+    }
+
 
     public void addUsers() {
         User user1 = new User();
@@ -84,7 +93,7 @@ public class UserService implements UserDetailsService {
         User user3 = new User();
         user3.setName("Paweł");
         user3.setLastName("Ościłowicz");
-        user3.setEmail("paweł@gmail.com");
+        user3.setEmail("pawel@gmail.com");
         user3.setNick("Paweł");
         user3.setPassword("$2a$10$0u0xT.PjG.nZqGem31btOO/.2qhbra82T70Pw2oi220u0lxzAy89W");
         repository.save(user3);

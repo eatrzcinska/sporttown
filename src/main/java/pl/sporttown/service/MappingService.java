@@ -6,6 +6,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import pl.sporttown.controller.modelDTO.CommentDTO;
 import pl.sporttown.controller.modelDTO.PostDTO;
 import pl.sporttown.controller.modelDTO.UserDTO;
+import pl.sporttown.controller.modelDTO.UserEditDTO;
 import pl.sporttown.controller.modelDTO.UserRegistrationDto;
 import pl.sporttown.domain.model.Comment;
 import pl.sporttown.domain.model.Post;
@@ -94,5 +95,7 @@ public class MappingService {
        // commentDTO.setPostDTO(mappingPostToPostDTO(comment.getPost()));
         return commentDTO;
     }
+
+
 
 }
