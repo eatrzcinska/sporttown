@@ -78,8 +78,8 @@ public class UserController {
         return "redirect:/registration?success";
     }
 
-    @PostConstruct
-    public void addUsers(){
-        userService.addUsers();
-    }
+//    @PostConstruct
+//    public void addUsers(){
+//        userService.addUsers();
+//    }
 }
