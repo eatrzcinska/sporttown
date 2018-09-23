@@ -7,12 +7,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.sporttown.controller.modelDTO.UserDTO;
+import pl.sporttown.controller.modelDTO.UserEditDTO;
 import pl.sporttown.controller.modelDTO.UserRegistrationDto;
 import pl.sporttown.domain.model.User;
 import pl.sporttown.service.UserService;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class UserController {
@@ -36,14 +39,27 @@ public class UserController {
     }
 
     @GetMapping("/profile")
+
     public String showProfie(){
         return "profile";
     }
-    @GetMapping("/profile/edit")
-    public String editProfile(){
-        return "profileEdit";
+    @ModelAttribute("userEdit")
+    public UserDTO editUser(){
+        return new UserDTO();
     }
-    @GetMapping("/posty")
+
+    @GetMapping("/profile/edit")
+    public String showEditProfil() {
+        return "profileEdit.html";
+    }
+
+    @PostMapping(path = "/profile/edit")
+    public String addPost(@ModelAttribute("userEdit") UserDTO userDTO, Principal principal) {
+        userService.editProfile(userDTO,principal);
+        return "redirect:/";
+    }
+
+    @GetMapping("/profile/posts")
     public String postsProfile(){
         return "profilePosts";
     }
