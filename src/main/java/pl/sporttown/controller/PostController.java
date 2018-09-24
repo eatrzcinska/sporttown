@@ -2,13 +2,12 @@ package pl.sporttown.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.sporttown.controller.modelDTO.CommentDTO;
 import pl.sporttown.controller.modelDTO.PostDTO;
 import pl.sporttown.domain.model.Category;
+import pl.sporttown.domain.model.Post;
+import pl.sporttown.domain.model.User;
 import pl.sporttown.service.CommentService;
 import pl.sporttown.service.PostService;
 import pl.sporttown.service.UserService;
@@ -49,6 +48,13 @@ public class PostController {
         return "postList";
     }
 
+    @GetMapping(path = "/delete/{postID}")
+    public String deletPost(@PathVariable("postID") Long id){
+        postService.delet(id);
+        return "redirect:/profile/posts";
+    }
+
+
     @GetMapping(path = "/showpost/{postID}")
     public String showPost(@PathVariable("postID") long id, Model model){
         // User user = new User();
@@ -60,11 +66,27 @@ public class PostController {
         model.addAttribute("postDTOById", postDTObyId);
         model.addAttribute("commentDTO",commentDTO);
         model.addAttribute("commentList",commentList);
+        model.addAttribute("categories",Category.values());
 
         return "onePostView";
     }
+    @GetMapping("/showPostByCategory/{postCategory}")
+    public String showPostsByCategory(@ModelAttribute("postDTO") PostDTO postDTO, Model model,
+                                      @PathVariable("postCategory")String kategoria) {
 
+        model.addAttribute("categories",Category.values());
+        Category category = null;
+        for (Category c : postDTO.getCategory().values()) {
+            if (c.name().toUpperCase().equals(kategoria.toUpperCase())) {
+                category = c;
+                break;
+            } else {
+                category = null;
+            }
+        }
 
-
+        List<PostDTO> postByCategories = postService.findCategory(category);
+        model.addAttribute("postByCategories",postByCategories);
+        return "postByCategory";
+    }
 }
-

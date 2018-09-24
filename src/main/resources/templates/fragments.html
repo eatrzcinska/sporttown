@@ -46,13 +46,18 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
+
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Kategorie</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Rolki</a>
-                                <a class="dropdown-item" href="#">Rower</a>
-                                <a class="dropdown-item" href="#">Bieganie</a>
+
+                                <a class="dropdown-item"
+                                   th:each="aCategory : ${categories}"
+                                   th:text="${aCategory.getName()}"
+                                   th:href="${'/showPostByCategory/'+ aCategory}"
+                                   th:value="${aCategory.getName()}">
+                                </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Wszystkie kategorie</a>
+                                <a class="dropdown-item" th:href="${'/'}" >Wszystkie kategorie</a>
                             </div>
                         </li>
                     </ul>
@@ -84,6 +89,28 @@
             </div>
         </nav>
     </header>
+
+    <!-- Categories in header -->
+    <div th:fragment="categories" class="card my-4">
+        <h5 class="card-header">Najpopularniejsze kategorie</h5>
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <div  th:each="aCategory : ${categories}">
+                                <a   th:text="${aCategory.getName().charAt(0) + aCategory.getName().substring(1)
+                                             .toLowerCase()} "
+                                     th:href="${'/showPostByCategory/'+ aCategory}"
+                                     th:value="${aCategory.getName()}"></a><br>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer th:fragment="footer">
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

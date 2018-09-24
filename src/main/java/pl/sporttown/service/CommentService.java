@@ -54,6 +54,19 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
+    public List<CommentDTO> findCommentByUserNick(String nick) {
+        List<Comment> commentList = commentRepository.findCommentByUserNick(nick);
+        return commentList.stream()
+                .map(comment -> {
+                    CommentDTO commentDTO = mappingService.mapingCommentToCommentDTO(comment);
+                    return commentDTO;
+                })
+                .sorted(Comparator.comparing(CommentDTO::getData).reversed())
+                .collect(Collectors.toList());
+    }
+
+
+    public List<CommentDTO> findCommentByPostId(Long id) {
     public List<CommentDTO> findCommentByPostId(long id) {
         List<Comment> commentList = commentRepository.findCommentByPost_Id(id);
         return commentList.stream()

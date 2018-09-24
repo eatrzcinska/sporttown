@@ -54,8 +54,10 @@
 
                 <ul class="list-group">
                     <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Posty: </strong></span><p th:text="${userinfo.getPosts().size()}"></p></li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Komentarze: </strong></span><p th:text="${userinfo.getComments().size()}"></p></li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Posty: </strong></span>
+                        <p th:text="${userinfo.getPosts().size()}"></p></li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Komentarze: </strong></span>
+                        <p th:text="${userinfo.getComments().size()}"></p></li>
                 </ul>
                 <br>
 
@@ -69,34 +71,37 @@
                 <br>
                 <br>
                 <br>
+                <div th:each=" comment : ${comments}">
                 <div class="container">
                     <div class="row">
-                        <div class="panel panel-default" style="max-width: 500px">
-                            <div class="panel-heading"><h4>User Profile</h4></div>
-                            <div class="panel-body">
-                                <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+                        <div class="col-md-8">
+                            <div class="comments-list">
+                                <div class="media">
+                                    <a class="media-left" href="#">
+                                        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" style="width: 50px; height: 50px;">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading user_name" th:text="${userinfo.getNick()}"></h4>
+                                        <p th:text="${comment.getText()}"></p>
+                                    </div>
                                 </div>
-                                <div class="container">
-                                    <h2 th:text="${userinfo.getNick()}"></h2>
                                 </div>
-                                <hr>
-                                <ul class="container details">
-                                    <li><p th:utext="${userinfo.getName() + ' ' + userinfo.getLastName()}"></p></li>
-                                    <li><p th:utext="${userinfo.getEmail()}"></p></li>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            </div><!--/tab-content-->
+
+        </div><!--/col-9-->
+
+    </div><!--/row-->
 
 
-                </div><!--/tab-content-->
-            </div><!--/col-9-->
+    <!-- Footer -->
+    <footer th:replace="fragments::footer"></footer>
 
-        </div><!--/row-->
-
-
-        <!-- Footer -->
-        <footer th:replace="fragments::footer"></footer>
-
-    </div>
+</div>
 </body>
 </html>

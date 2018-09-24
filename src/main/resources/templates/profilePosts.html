@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+>
 
 <head th:fragment="links">
     <meta charset="utf-8">
@@ -30,8 +30,6 @@
     <!--<![endif]-->
 
 
-
-
 </head>
 <body>
 <div class="page" style="background-color: #f4faff">
@@ -49,13 +47,17 @@
 
 
                 <div class="text-center">
-                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-                </div></hr><br>
+                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+                         alt="avatar">
+                </div>
+                </hr><br>
 
                 <ul class="list-group">
                     <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Posty</strong></span></li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Komentarze</strong></span></li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Posty: </strong></span>
+                        <p th:text="${userinfo.getPosts().size()}"></p></li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Komentarze: </strong></span>
+                        <p th:text="${userinfo.getComments().size()}"></p></li>
                 </ul>
                 <br>
 
@@ -64,43 +66,25 @@
             <div class="col-sm-9">
                 <a class="btn btn-primary" href="/profile" role="button">Info</a>
                 <a class="btn btn-primary" href="/profile/posts" role="button">Posty</a>
-                <a class="btn btn-primary" href="#" role="button">Komentarze</a>
+                <a class="btn btn-primary" href="/profile/comments" role="button">Komentarze</a>
                 <a class="btn btn-primary" href="/profile/edit" role="button">Edytuj Profil</a>
                 <br>
                 <br>
                 <br>
-                <div class="row">
-                    <div class="list-group">
-                        <div class="list-group-item clearfix">
-                            <div class="profile-teaser-left">
-                                <div class="profile-img"><img src="https://static.pexels.com/photos/21011/pexels-photo-large.jpg"/></div>
-                            </div>
-                            <div class="profile-teaser-main">
-                                <h2 class="profile-name">Jane Doe</h2>
-                                <div class="profile-info">
-                                    <div class="info"><span class="">Info:</span> Something here</div>
-                                    <div class="info"><span class="">Info:</span> Something here</div>
-                                    <div class="info"><span class="">Info:</span> Something here</div>
-                                    <div class="info"><span class="">Info:</span> Something here</div>
-                                </div>
-                            </div>
-                        </div><!-- item -->
 
-                        <div class="list-group-item clearfix">
-                            <div class="profile-teaser-left">
-                                <div class="profile-img"><img src="https://static.pexels.com/photos/21011/pexels-photo-large.jpg"/></div>
+                <div th:each=" post : ${posts}">
+                    <ul class="media-list main-list">
+                        <li class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object" style="width: 150px; height: 90px" th:src="${'data:image/png;base64,'+ post.imageBase64Encoded}" alt="...">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading" th:text="${post.getText()}"></h4>
+                                <a class="btn btn-primary" th:href="${'/showpost/' + post.getId()}"  role="button">Zobacz</a>
+                                <a class="btn btn-warning" th:href="${'/delete/' + post.getId()}" role="button">Usuń</a>
                             </div>
-                            <div class="profile-teaser-main">
-                                <h2 class="profile-name">Jane Doe</h2>
-                                <div class="profile-info">
-                                    <div class="info"><span class="">Info:</span> Something here</div>
-                                    <div class="info"><span class="">Info:</span> Something here</div>
-                                    <div class="info"><span class="">Info:</span> Something here</div>
-                                    <div class="info"><span class="">Info:</span> Something here</div>
-                                </div>
-                            </div>
-                        </div><!-- item -->
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div><!--/tab-content-->
 

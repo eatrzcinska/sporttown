@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+>
 
 <head th:fragment="links">
     <meta charset="utf-8">
@@ -46,14 +46,14 @@
 
 
                 <div class="text-center">
-                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-                </div></hr><br>
+                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+                         alt="avatar"><br><br>
 
-                <ul class="list-group">
-                    <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Posty</strong></span></li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong>Komentarze</strong></span></li>
-                </ul>
+                    <input type="file" class="text-center center-block well well-sm" style="width: 202px;">
+                </div>
+                </hr>
+
+
                 <br>
 
 
@@ -61,32 +61,35 @@
             <div class="col-sm-9">
                 <a class="btn btn-primary" href="/profile" role="button">Info</a>
                 <a class="btn btn-primary" href="/profile/posts" role="button">Posty</a>
-                <a class="btn btn-primary" href="#" role="button">Komentarze</a>
+                <a class="btn btn-primary" href="/profile/comments" role="button">Komentarze</a>
                 <a class="btn btn-primary" href="/profile/edit" role="button">Edytuj Profil</a>
                 <br>
                 <br>
-                <h3>Informacje o uzytkowniku</h3>
-                <form  th:action="@{/profile/edit}" th:object="${userEdit}" method="post">
-                    <div class="form-group"
-                         th:classappend="${#fields.hasErrors('name')}? 'has-error':''">
-                        <label for="name" class="control-label">Imie</label>
-                        <input id="name"
-                               class="form-control"
-                               th:field="*{name}"/>
-                        <p class="error-message"
-                           th:each="error : ${#fields.errors('name')}"
-                           th:text="${error}">Validation error</p>
+                <h3>Informacje o uzytkowniku:</h3>
+                <form class="form-horizontal" role="form" th:action="@{/profile/edit}" th:object="${userEdit}" method="post">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Imie:</label>
+                        <div class="col-lg-8">
+                            <input id="name"
+                                   class="form-control"
+                                   th:field="*{name}"/>
+                            <p class="error-message"
+                               th:each="error : ${#fields.errors('name')}"
+                               th:text="${error}">Validation error</p>
+                        </div>
                     </div>
-                    <div class="form-group"
-                         th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
-                        <label for="lastName" class="control-label">Nazwisko</label>
-                        <input id="lastName"
-                               class="form-control"
-                               th:field="*{lastName}"/>
-                        <p class="error-message"
-                           th:each="error : ${#fields.errors('lastName')}"
-                           th:text="${error}">Validation error</p>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Nazwisko:</label>
+                        <div class="col-lg-8">
+                            <input id="lastName"
+                                   class="form-control"
+                                   th:field="*{lastName}"/>
+                            <p class="error-message"
+                               th:each="error : ${#fields.errors('lastName')}"
+                               th:text="${error}">Validation error</p>
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-8">
