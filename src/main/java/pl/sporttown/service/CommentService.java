@@ -54,7 +54,7 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
-    public List<CommentDTO> findCommentByPostId(Long id) {
+    public List<CommentDTO> findCommentByPostId(long id) {
         List<Comment> commentList = commentRepository.findCommentByPost_Id(id);
         return commentList.stream()
                 .map(comment -> {

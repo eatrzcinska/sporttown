@@ -11,7 +11,7 @@
     <div th:each="comment : ${commentList}">
     <div class="card-body">
         <h6 class="card-title" style="color: dodgerblue" th:text="${'Dodano przez: ' + comment.getUserDTO().getNick()}">Użytkownik</h6>
-        <textarea class="form-control" id="new_comment" name="new_comment"
+        <textarea readonly style="background-color:white" class="form-control" id="new_comment" name="new_comment"
                   placeholder="komentarz" th:text="${comment.getText()}"></textarea>
     </div>
     </div>
