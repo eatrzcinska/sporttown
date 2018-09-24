@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.sporttown.controller.modelDTO.UserDTO;
 import pl.sporttown.controller.modelDTO.UserRegistrationDto;
+import pl.sporttown.domain.model.Category;
 import pl.sporttown.domain.model.User;
 import pl.sporttown.service.CommentService;
 import pl.sporttown.service.PostService;
@@ -48,6 +49,7 @@ public class UserController {
     public String showProfie(Model model, Principal principal){
 
         model.addAttribute("userinfo",userService.findByNick(principal.getName()));
+        model.addAttribute("categories",Category.values());
 
         return "profile";
     }

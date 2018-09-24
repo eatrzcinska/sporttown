@@ -66,6 +66,7 @@ public class PostController {
         model.addAttribute("postDTOById", postDTObyId);
         model.addAttribute("commentDTO",commentDTO);
         model.addAttribute("commentList",commentList);
+        model.addAttribute("categories",Category.values());
 
         return "onePostView";
     }
