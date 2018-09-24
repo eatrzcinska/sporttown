@@ -2,13 +2,17 @@ package pl.sporttown.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import pl.sporttown.controller.modelDTO.CommentDTO;
 import pl.sporttown.controller.modelDTO.PostDTO;
+import pl.sporttown.domain.model.Category;
 import pl.sporttown.domain.model.Post;
+import pl.sporttown.domain.model.User;
+import pl.sporttown.service.CommentService;
 import pl.sporttown.service.PostService;
+import pl.sporttown.service.UserService;
 
+import java.security.Principal;
 import java.util.List;
 
 
@@ -16,37 +20,57 @@ import java.util.List;
 public class PostController {
 
     private PostService postService;
+    private UserService userService;
+    private CommentService commentService;
 
-    public PostController(PostService service) {
-        this.postService = service;
+    public PostController(PostService postService, UserService userService, CommentService commentService) {
+        this.postService = postService;
+        this.userService = userService;
+        this.commentService = commentService;
     }
 
     @GetMapping("/")
-    public String root(@ModelAttribute("postDTO") PostDTO postDTO) {
+    public String root(@ModelAttribute("postDTO") PostDTO postDTO, Model model) {
+        model.addAttribute("postList", postService.findAll());
+        model.addAttribute("categories",Category.values());
         return "index";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-
-
     @PostMapping(path = "/post/add")
-    public String addPost(@ModelAttribute("postDTO") PostDTO postDTO) {
-        postService.addPost(postDTO);
+    public String addPost(@ModelAttribute("postDTO") PostDTO postDTO, Principal principal) {
+        postService.addPost(postDTO, principal);
         return "redirect:/";
-
     }
-
 
     @GetMapping(path = "/list")
     public String postList(Model model) {
-        List<Post> postList = postService.findAll();
-        model.addAttribute("postList", postList);
+        model.addAttribute("postList", postService.findAll());
         return "postList";
     }
+
+    @GetMapping(path = "/delete/{postID}")
+    public String deletPost(@PathVariable("postID") Long id){
+        postService.delet(id);
+        return "redirect:/profile/posts";
+    }
+
+
+    @GetMapping(path = "/showpost/{postID}")
+    public String showPost(@PathVariable("postID") long id, Model model){
+        // User user = new User();
+        CommentDTO commentDTO = new CommentDTO();
+        PostDTO postDTObyId = postService.findPostById(id);
+
+        List commentList = commentService.findCommentByPostId(id);
+        //model.addAttribute(user);
+        model.addAttribute("postDTOById", postDTObyId);
+        model.addAttribute("commentDTO",commentDTO);
+        model.addAttribute("commentList",commentList);
+
+        return "onePostView";
+    }
+
+
 
 }
 

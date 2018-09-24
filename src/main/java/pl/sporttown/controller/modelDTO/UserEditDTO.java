@@ -3,17 +3,17 @@ package pl.sporttown.controller.modelDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentDTO {
+public class UserEditDTO {
 
     private long id;
-    private String text;
-    private LocalDateTime data;
-    private UserDTO userDTO;
-    private PostDTO postDTO;
+    private String name;
+    private String lastName;
+    private String password;
+    private String nick;
+    private String email;
 
 }

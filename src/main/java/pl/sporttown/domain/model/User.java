@@ -1,9 +1,6 @@
 package pl.sporttown.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -14,7 +11,8 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"posts", "comments", "roles"})
+@ToString(exclude = {"posts", "comments", "roles"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,8 +20,6 @@ public class User {
     private String name;
     private String lastName;
     private String password;
-
-    @Column(unique = true)
     private String nick;
     private String email;
 

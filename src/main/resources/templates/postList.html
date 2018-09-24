@@ -30,7 +30,7 @@
                     <td>
                         <!--<img th:src="@{/image/${image_id}}" />-->
 
-                        <img th:src="@{/post/image-response-entity}" />
+                        <img th:src="*{'data:image/png;base64,'+ imageBase64Encoded}" alt="" />
                     </td>
                     <td>
                         <th:foreach th:each="... " var="imgPath" items="${imagesList}">
