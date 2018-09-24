@@ -1,6 +1,6 @@
 package pl.sporttown.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,14 +8,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.sporttown.controller.modelDTO.PostDTO;
 import pl.sporttown.controller.modelDTO.UserDTO;
-import pl.sporttown.controller.modelDTO.UserEditDTO;
 import pl.sporttown.controller.modelDTO.UserRegistrationDto;
 import pl.sporttown.domain.model.User;
+import pl.sporttown.service.CommentService;
 import pl.sporttown.service.PostService;
 import pl.sporttown.service.UserService;
-
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import java.security.Principal;
@@ -27,6 +25,9 @@ public class UserController {
     private UserService userService;
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private CommentService commentService;
 
     @ModelAttribute("user")
     public UserRegistrationDto userRegistrationDto(){
@@ -45,9 +46,18 @@ public class UserController {
 
     @GetMapping("/profile")
     public String showProfie(Model model, Principal principal){
-        User user = userService.findByNick(principal.getName());
-        model.addAttribute("userinfo",user);
+
+        model.addAttribute("userinfo",userService.findByNick(principal.getName()));
+
         return "profile";
+    }
+
+    @GetMapping("/profile/comments")
+    public String showComments(Model model, Principal principal){
+        model.addAttribute("post",postService.getAllPostByUser(principal.getName()));
+        model.addAttribute("userinfo",userService.findByNick(principal.getName()));
+        model.addAttribute("comments", commentService.findCommentByUserNick(principal.getName()));
+        return "profileComments";
     }
 
     @ModelAttribute("userEdit")
@@ -63,7 +73,7 @@ public class UserController {
     @PostMapping(path = "/profile/edit")
     public String addPost(@ModelAttribute("userEdit") UserDTO userDTO, Principal principal) {
         userService.editProfile(userDTO,principal);
-        return "redirect:/";
+        return "redirect:/profile";
     }
 
     @GetMapping("/profile/posts")
