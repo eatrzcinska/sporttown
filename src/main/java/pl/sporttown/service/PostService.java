@@ -9,6 +9,7 @@ import pl.sporttown.domain.model.User;
 import pl.sporttown.domain.repoository.PostRepository;
 import pl.sporttown.domain.repoository.UserRepository;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -62,13 +63,27 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
+    public List<PostDTO> getAllPostByUser(String nick){
+        List<Post> list = postRepository.findPostsByUserNick(nick);
+        return list.stream()
+                .map(post -> {
+                    PostDTO postDTO = mappingService.mappingPostToPostDTO(post);
+                    return postDTO;
+                })
+                .sorted(Comparator.comparing(PostDTO::getData).reversed())
+                .collect(Collectors.toList());
+    }
+
+    public void delet(Long id){
+        postRepository.deleteById(id);
+    }
 
     public Post findPostEntity(Long id) {
         return postRepository.findPostById(id);
     }
 
     public PostDTO findPostById(Long id) {
-        return mappingService.mappingPostToPostDTO(postRepository.findPostById(id));
+       return mappingService.mappingPostToPostDTO(postRepository.findPostById(id));
     }
 
 
