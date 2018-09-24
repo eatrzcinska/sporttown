@@ -64,17 +64,22 @@ public class PostController {
         return "onePostView";
     }
     @GetMapping("/showPostByCategory/{postCategory}")
-    public String showPostsByCategory( Model model, @PathVariable("postCategory")Category category) {
-//        public String showPostsByCategory(@PathVariable("category")Category category, Model model) {
-//        if (categoryId == null) {
-//            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-//        } else {
-        List<PostDTO> categories = postService.findCategory(category);
-        model.addAttribute("postByCategories",categories);
-//            return new ResponseEntity<>(categories, HttpStatus.OK);
+    public String showPostsByCategory(@ModelAttribute("postDTO") PostDTO postDTO, Model model,
+                                      @PathVariable("postCategory")String kategoria) {
+
+        model.addAttribute("categories",Category.values());
+        Category category = null;
+        for (Category c : postDTO.getCategory().values()) {
+            if (c.name().toUpperCase().equals(kategoria.toUpperCase())) {
+                category = c;
+                break;
+            } else {
+                category = null;
+            }
+        }
+
+        List<PostDTO> postByCategories = postService.findCategory(category);
+        model.addAttribute("postByCategories",postByCategories);
         return "postByCategory";
     }
-
-
 }
-

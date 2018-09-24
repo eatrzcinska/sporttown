@@ -29,7 +29,7 @@
                 <!-- Existing Posts -->
                 <div th:replace = "postTemplate :: postTemplate"></div>
 
-                <!-- First Post -->**2
+                <!-- First Post -->
                 <div class="card mb-4">
                     <img class="card-img-top" th:src="@{../img/bieganie.jpg}" alt="Zdjęcie biegaczki">
                     <div class="card-body">
@@ -94,40 +94,7 @@
                 </div>
 
                 <!-- Categories Widget -->
-                <div class="card my-4">
-                    <h5 class="card-header">Najpopularniejsze kategorie</h5>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li>
-                                        <a href="#">Rower</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Wędkarstwo</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Wspinaczka</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li>
-                                        <a href="#">Rolki</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Bieganie</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Boks</a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div th:replace="fragments::categories"></div>
 
                 <!-- Side Widget -->
                 <div class="card my-4">
