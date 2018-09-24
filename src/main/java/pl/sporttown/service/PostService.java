@@ -85,6 +85,17 @@ public class PostService {
     public PostDTO findPostById(Long id) {
        return mappingService.mappingPostToPostDTO(postRepository.findPostById(id));
     }
+
+
+    public List<PostDTO> findCategory(Category category) {
+        List<Post> postList = postRepository.findAllByCategory(category);
+
+        return postList.stream()
+                .map(post -> {
+                    PostDTO postDTO = mappingService.mappingPostToPostDTO(post);
+                    return postDTO;
+                })
+                .sorted(Comparator.comparing(PostDTO::getData).reversed())
+                .collect(Collectors.toList());
+    }
 }
-
-

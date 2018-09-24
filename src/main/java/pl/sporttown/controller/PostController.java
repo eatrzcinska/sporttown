@@ -69,8 +69,23 @@ public class PostController {
 
         return "onePostView";
     }
+    @GetMapping("/showPostByCategory/{postCategory}")
+    public String showPostsByCategory(@ModelAttribute("postDTO") PostDTO postDTO, Model model,
+                                      @PathVariable("postCategory")String kategoria) {
 
+        model.addAttribute("categories",Category.values());
+        Category category = null;
+        for (Category c : postDTO.getCategory().values()) {
+            if (c.name().toUpperCase().equals(kategoria.toUpperCase())) {
+                category = c;
+                break;
+            } else {
+                category = null;
+            }
+        }
 
-
+        List<PostDTO> postByCategories = postService.findCategory(category);
+        model.addAttribute("postByCategories",postByCategories);
+        return "postByCategory";
+    }
 }
-
