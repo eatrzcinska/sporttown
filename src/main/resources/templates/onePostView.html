@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head th:fragment="links">
     <meta charset="utf-8">
@@ -52,10 +52,11 @@
                             <h6 class="card-text" style="color: dodgerblue"
                                 th:text="${postDTOById.getUserDTO().getNick()}"></h6>
                         </div>
-                        <br>
+                        <br><br>
                         <div>
-                            <p class="card-text" th:text="${postDTOById.getText()}"></p>
+                            <h5 class="card-text" th:text="${postDTOById.getText()}"></h5>
                         </div>
+                        <br>
                         <!--<h5 class="card-text" style="color: dodgerblue"
                              th:text="${'Liczba głosów: ' + postDTOById.votes}"></h5>-->
                     </div>
@@ -70,7 +71,7 @@
                     </div>
 
                 </div>
-                <div>
+                <div sec:authorize="isAnonymous()">
                     <div class="form-group">
                         <div class="span4 well">
 
